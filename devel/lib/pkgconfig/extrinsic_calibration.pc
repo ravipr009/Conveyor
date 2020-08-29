@@ -1,0 +1,8 @@
+prefix=/home/ravi/classic_ur_ws/devel
+
+Name: extrinsic_calibration
+Description: Description of extrinsic_calibration
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

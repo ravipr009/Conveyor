@@ -1,0 +1,2 @@
+set(wsg_50_common_MESSAGE_FILES "/home/ravi/classic_ur_ws/src/wsg50-ros-pkg/wsg_50_common/msg/Cmd.msg;/home/ravi/classic_ur_ws/src/wsg50-ros-pkg/wsg_50_common/msg/Status.msg")
+set(wsg_50_common_SERVICE_FILES "/home/ravi/classic_ur_ws/src/wsg50-ros-pkg/wsg_50_common/srv/Conf.srv;/home/ravi/classic_ur_ws/src/wsg50-ros-pkg/wsg_50_common/srv/Incr.srv;/home/ravi/classic_ur_ws/src/wsg50-ros-pkg/wsg_50_common/srv/Move.srv")
