@@ -182,8 +182,8 @@ class move:
 		self.ik = IK("base_link", "ee_link")
 		self.ref_pos =  [0.03416740149259567, -1.7510932127581995, 2.2170276641845703, -1.9008978048907679, -1.5938809553729456, 0.8981828689575195]
 		self.bin_pos =  [1.6449499130249023, -0.901740852986471, 1.2159690856933594, -1.9322336355792444, -1.5911839644061487, 2.138575315475464]
-		# self.move_serv = rospy.ServiceProxy('/wsg_50_driver/move',Move)
-		# self.home_serv = rospy.ServiceProxy('/wsg_50_driver/homing',Empty)
+		self.move_serv = rospy.ServiceProxy('/wsg_50_driver/move',Move)
+		self.home_serv = rospy.ServiceProxy('/wsg_50_driver/homing',Empty)
 		time.sleep(0.1)
 	def serv_callback(self):
 		resp1 = self.move_serv(48,70)
@@ -196,7 +196,7 @@ class move:
 		print("Released Gripper\n")
 		pass
 	def move_servoj(self,y_track,g_track):
-		# self.p_move = Process(target=self.serv_callback)
+		self.p_move = Process(target=self.serv_callback)
 		print("Following the target\n")
 		count = 0;grip_flag = 0
 		sol =  self.joints
@@ -209,7 +209,7 @@ class move:
 			elif (dist < 0.01 and count == 10):
 				print("Gripper in Action \n")
 				if (grip_flag == 0):
-					# self.p_move.start()
+					self.p_move.start()
 					grip_flag = 1
 				count += 1
 			elif (dist < 0.01 and count < 210):
@@ -238,12 +238,12 @@ class move:
 		print("Reached Ref pos\n")
 
 	def move_bin(self):
-		# self.p_move.join()
+		self.p_move.join()
 		# sol = self.ik.get_ik(list(self.joints),*self.bin_pos)
 		self.script.data =  "movej({},a=1.4, v=1.05, t=3, r=0)".format(list(self.bin_pos))
 		self.pub.publish(self.script)
 		time.sleep(4)
-		# self.home_serv()
+		self.home_serv()
 		print("Reached Bin\n")
 		# time.sleep(2.5)
 

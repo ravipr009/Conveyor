@@ -9,8 +9,11 @@ rospy.init_node("track_ik")
 
 # Define Dmp and track_ik instance from utils
 dmp = utils.DMP()
-initial_pose = np.loadtxt("initial_pose.txt",delimiter= ',')
+initial_pose = np.loadtxt("initial_pose_ur10.txt",delimiter= ',')
+initial_joints = np.loadtxt("initial_joints_ur10.txt",delimiter= ',')
 robot = utils.move()
+robot.ref_pos = initial_joints[0]
+robot.bin_pos = initial_joints[2]
 
 ref_pose = initial_pose[0]
 target_pose = initial_pose[1]
@@ -26,7 +29,7 @@ while not rospy.is_shutdown():
 	# robot.move_view()
 	ch = raw_input("Continue ? (y/n)\n")
 	if (ch == 'y'):
-		continue
+		pass
 	else:
 		print("Good Bye\n")
 		break;
