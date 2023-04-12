@@ -1,8 +1,0 @@
-prefix=/home/ravi/classic_ur_ws/devel
-
-Name: save_to_file
-Description: Description of save_to_file
-Version: 0.0.0
-Cflags: -I/home/ravi/classic_ur_ws/src/save_to_file/include
-Libs: -L${prefix}/lib -lsave_to_file
-Requires: message_runtime roscpp rospy sensor_msgs std_msgs
